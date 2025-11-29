@@ -12,15 +12,13 @@ export interface StaggeredMenuSocialItem {
 export interface StaggeredMenuProps {
   items?: StaggeredMenuItem[];
   socialItems?: StaggeredMenuSocialItem[];
-  menuButtonColor?: string;
 }
 
 export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   items = [],
   socialItems = [],
-  menuButtonColor = "#fff",
 }) => {
-  const [open, setOpen] = useState(false);
+  const [, setOpen] = useState(false);
   const openRef = useRef(false);
 
   const panelRef = useRef<HTMLDivElement | null>(null);
