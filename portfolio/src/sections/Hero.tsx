@@ -14,7 +14,7 @@ export function Hero() {
         x: -100,
         opacity: 0,
         duration: 1,
-        stagger: 0.1, // Adicionei um stagger pequeno para ficar mais fluido
+        stagger: 0.1,
         ease: "power3.out",
       });
 
@@ -39,14 +39,17 @@ export function Hero() {
       ref={comp}
       className="w-full min-h-screen bg-gradient-to-r from-[#262325] to-[#443C4E] flex items-center justify-center overflow-hidden px-4 py-10 md:py-0 relative"
     >
-      {/* HEADER / NAVBAR:
-        - Mudei de 'p-6 md:p-10' para 'p-5 md:p-8' (Subiu um pouco)
-        - top-0 right-0 mantém ele fixo no canto
+      {/* POSICIONAMENTO DO LINK "BAIXAR CV"
+         - top-9: Alinha verticalmente com o centro do botão Menu (que está em top-8)
+         - right-20 (Mobile): Dá espaço para o ícone X não ficar em cima
+         - md:right-28 (Desktop): Dá mais respiro em telas grandes
+         - z-40: Fica acima do background, mas abaixo do menu aberto
       */}
-      <div className="absolute top-0 right-0 p-5 md:p-8 flex items-center gap-6 z-20">
+      <div className="absolute top-9 right-20 md:top-10 md:right-28 z-40 flex items-center gap-6">
         <a
-          href="#"
-          className="flex items-center gap-2 text-white font-bold tracking-wide text-xs md:text-sm hover:text-purple-400 transition-colors"
+          href="/cv-pedro-arthur.pdf"
+          download="CV_Pedro_Arthur_FullStack.pdf"
+          className="flex items-center gap-2 text-white font-bold tracking-wide text-[10px] md:text-sm hover:text-purple-400 transition-colors"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +57,7 @@ export function Hero() {
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="w-5 h-5"
+            className="w-4 h-4 md:w-5 md:h-5"
           >
             <path
               strokeLinecap="round"
@@ -64,25 +67,9 @@ export function Hero() {
           </svg>
           BAIXAR CV
         </a>
-        <button className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white flex items-center justify-center text-white hover:bg-white hover:text-[#3d3546] transition-all duration-300">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        </button>
       </div>
 
-      <div className="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12 pl-4 md:pl-16">
+      <div className="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12 md:pl-20 ">
         {/* Lado Esquerdo: Conteúdo de Texto */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-3xl z-10 font-sans">
           <h2 className="hero-element-left font-display text-sm md:text-base text-gray-200 font-semibold mb-4 tracking-[0.2em] uppercase">
@@ -101,11 +88,12 @@ export function Hero() {
             regras de negócio complexas em código limpo e performático.
           </p>
 
-          <button className="hero-element-left bg-[#5a2d8c] hover:bg-[#4a2475] text-white text-xs md:text-sm px-8 py-3 md:px-8 md:py-3.5 rounded font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_20px_rgba(90,45,140,0.5)]">
+          <button className="hero-element-left bg-[#6d28d9] hover:bg-[#5b21b6] text-white font-display font-bold text-xs tracking-widest uppercase px-12 py-4 md:py-5 mt-8 w-auto transition-all duration-300 hover:shadow-[0_0_30px_rgba(109,40,217,0.6)] hover:-translate-y-1 mx-auto md:mx-0 md:ml-26">
             Conecte-se comigo
           </button>
         </div>
 
+        {/* Lado Direito: Imagem */}
         <div className="hero-element-right relative w-full md:w-1/2 flex justify-center md:justify-center md:mt-16">
           <img
             src={profilePic}
