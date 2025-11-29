@@ -88,7 +88,31 @@ export function Hero() {
             regras de negócio complexas em código limpo e performático.
           </p>
 
-          <button className="hero-element-left bg-[#6d28d9] hover:bg-[#5b21b6] text-white font-display font-bold text-xs tracking-widest uppercase px-12 py-4 md:py-5 mt-8 w-auto transition-all duration-300 hover:shadow-[0_0_30px_rgba(109,40,217,0.6)] hover:-translate-y-1 mx-auto md:mx-0 md:ml-26">
+          <button
+            className="
+    /* 1. CLASSE DE ANIMAÇÃO DO GSAP */
+    hero-element-left
+    
+    /* 2. CORES VIBRANTES & VISIBILIDADE */
+    bg-[#7c3aed] hover:bg-[#6d28d9] text-white 
+    opacity-100 /* Força opacidade total caso o GSAP falhe */
+    
+    /* 3. TIPOGRAFIA */
+    font-display font-bold text-xs tracking-widest uppercase 
+    
+    /* 4. ESPAÇAMENTO & TAMANHO */
+    px-10 py-4 md:px-12 md:py-5 mt-8 
+    w-auto /* Garante que não estique */
+    
+    /* 5. ANIMAÇÕES DE INTERAÇÃO */
+    transition-all duration-300 
+    hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] hover:-translate-y-1
+    
+    /* 6. ALINHAMENTO CRÍTICO */
+    /* Mobile: mx-auto força o centro se o pai permitir, mas o self-center é mais forte no flexbox */
+    self-center md:self-start
+  "
+          >
             Conecte-se comigo
           </button>
         </div>
