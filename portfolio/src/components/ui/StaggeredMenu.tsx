@@ -25,7 +25,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   const preLayersRef = useRef<HTMLDivElement | null>(null);
   const preLayerElsRef = useRef<HTMLElement[]>([]);
 
-  // Refs para as duas barras do ícone
   const line1Ref = useRef<HTMLSpanElement | null>(null);
   const line2Ref = useRef<HTMLSpanElement | null>(null);
 
@@ -35,7 +34,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   const openTlRef = useRef<gsap.core.Timeline | null>(null);
   const closeTweenRef = useRef<gsap.core.Tween | null>(null);
 
-  // Cores do efeito "cortina" (Roxo escuro)
   const animColors = ["#581c87", "#3b0764", "#1a1a1a"];
 
   useLayoutEffect(() => {
@@ -55,10 +53,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       }
       preLayerElsRef.current = preLayers;
 
-      // Estado inicial: Painel fora da tela
       gsap.set([panel, ...preLayers], { xPercent: 100 });
 
-      // Estado inicial: Duas barras paralelas
       gsap.set(l1, { y: -4, rotate: 0 });
       gsap.set(l2, { y: 4, rotate: 0 });
     });
@@ -91,7 +87,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
     const tl = gsap.timeline({ paused: true });
 
-    // 1. Animação das camadas (Cortinas)
     layerStates.forEach((ls, i) => {
       tl.fromTo(
         ls.el,
@@ -103,7 +98,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
     const panelInsertTime = layerStates.length * 0.05 + 0.1;
 
-    // 2. Animação do Painel Principal (Entrando)
     tl.fromTo(
       panel,
       { xPercent: panelStart },
@@ -111,7 +105,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       panelInsertTime
     );
 
-    // 3. Texto aparecendo (Slide Up)
     if (itemEls.length) {
       tl.to(
         itemEls,
@@ -126,7 +119,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       );
     }
 
-    // 4. Sociais aparecendo
     if (socialLinks.length) {
       tl.to(
         socialLinks,
@@ -160,7 +152,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     const all: HTMLElement[] = [...layers, panel];
     closeTweenRef.current?.kill();
 
-    // Sai tudo para a direita
     closeTweenRef.current = gsap.to(all, {
       xPercent: 100,
       duration: 0.4,
@@ -179,43 +170,32 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     if (target) playOpen();
     else playClose();
 
-    // --- ANIMAÇÃO DO ÍCONE (HAMBURGER -> X) ---
     const l1 = line1Ref.current;
     const l2 = line2Ref.current;
 
     if (target) {
-      // Abrindo (Vira X)
       gsap.to(l1, { y: 0, rotate: 45, duration: 0.3, ease: "power2.out" });
       gsap.to(l2, { y: 0, rotate: -45, duration: 0.3, ease: "power2.out" });
     } else {
-      // Fechando (Vira Paralelo)
       gsap.to(l1, { y: -4, rotate: 0, duration: 0.3, ease: "power2.out" });
       gsap.to(l2, { y: 4, rotate: 0, duration: 0.3, ease: "power2.out" });
     }
   }, [playOpen, playClose]);
 
   return (
-    // Removi o "w-screen h-screen" daqui para não bloquear cliques quando fechado
-    // O posicionamento do botão é controlado por classes fixas
     <div className="fixed inset-0 pointer-events-none z-50">
-      {/* BOTÃO DO MENU (Posicionado no topo direito) 
-          pointer-events-auto para ser clicável
-      */}
       <div className="absolute top-6 right-4 md:top-8 md:right-8 pointer-events-auto z-[60]">
         <button
           ref={toggleBtnRef}
           onClick={toggleMenu}
-          // Estilo CLEAN: Sem borda, sem fundo, apenas as barras
           className="relative w-10 h-10 flex items-center justify-center group focus:outline-none"
           aria-label="Toggle Menu"
         >
           <div className="relative w-6 h-6 flex items-center justify-center">
-            {/* Barra 1 */}
             <span
               ref={line1Ref}
               className="absolute w-full h-[2px] bg-white rounded-full origin-center"
             />
-            {/* Barra 2 */}
             <span
               ref={line2Ref}
               className="absolute w-full h-[2px] bg-white rounded-full origin-center"
@@ -224,11 +204,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         </button>
       </div>
 
-      {/* ÁREA DO MENU (Só bloqueia clique quando aberto) */}
       <div
         className={`absolute inset-0 w-full h-full pointer-events-none overflow-hidden`}
       >
-        {/* Camadas de Animação (Pre-layers) - Largura restrita */}
         <div
           ref={preLayersRef}
           className="absolute inset-y-0 right-0 w-[300px] md:w-[450px] pointer-events-none z-[5]"
@@ -242,19 +220,16 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           ))}
         </div>
 
-        {/* PAINEL PRINCIPAL (Conteúdo) */}
         <aside
           ref={panelRef}
           className={`staggered-menu-panel absolute inset-y-0 right-0 w-[300px] md:w-[450px] bg-[#111] flex flex-col p-8 md:p-12 pt-32 z-10 border-l border-white/10 pointer-events-auto shadow-2xl`}
         >
-          {/* LINKS DO MENU */}
           <ul className="flex flex-col gap-6 md:gap-8">
             {items.map((it, idx) => (
               <li key={idx} className="overflow-hidden">
                 <a
                   href={it.link}
                   onClick={toggleMenu}
-                  // Texto menor no mobile (text-3xl) e maior no desktop (text-5xl)
                   className="sm-panel-item block font-display font-bold text-white hover:text-purple-500 transition-colors uppercase tracking-tight text-3xl md:text-5xl"
                 >
                   <span className="sm-panel-itemLabel block">{it.label}</span>
@@ -263,7 +238,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             ))}
           </ul>
 
-          {/* RODAPÉ DO MENU (Socials) */}
           <div className="mt-auto flex flex-col gap-4">
             <h3 className="text-purple-500 font-sans text-xs md:text-sm font-bold uppercase tracking-widest opacity-50">
               Socials
