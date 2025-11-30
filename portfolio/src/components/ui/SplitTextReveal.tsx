@@ -23,7 +23,6 @@ export const SplitTextReveal = ({
     const el = ref.current;
     if (!el) return;
 
-    // Seleciona todos os spans (letras)
     const chars = el.querySelectorAll(".split-char");
 
     gsap.fromTo(
