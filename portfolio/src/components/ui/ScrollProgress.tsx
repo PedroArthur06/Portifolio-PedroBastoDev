@@ -6,19 +6,15 @@ export function ScrollProgress() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // 1. Cálculo da altura total scrollável
       const totalHeight =
         document.documentElement.scrollHeight - window.innerHeight;
 
-      // 2. Quanto já foi scrollado
       const currentScroll = window.scrollY;
 
-      // 3. Regra de três simples para achar a porcentagem (0 a 100)
       const scrollPercentage = (currentScroll / totalHeight) * 100;
 
       setScrollProgress(scrollPercentage);
 
-      // Só mostra o botão depois de descer 100px
       if (currentScroll > 100) {
         setIsVisible(true);
       } else {
@@ -44,13 +40,11 @@ export function ScrollProgress() {
       }`}
     >
       <div className="relative w-14 h-14 flex items-center justify-center bg-[#0a0a0a] rounded-full shadow-[0_0_20px_rgba(0,0,0,0.5)] group hover:scale-110 transition-transform duration-300">
-        {/* SVG do Progresso (Anel Externo) */}
         <svg
           className="absolute top-0 left-0 w-full h-full -rotate-90 transform"
           width="56"
           height="56"
         >
-          {/* Círculo de fundo */}
           <circle
             cx="28"
             cy="28"
@@ -59,7 +53,6 @@ export function ScrollProgress() {
             stroke="#222"
             strokeWidth="2"
           />
-          {/* Círculo de progresso (Roxo Brilhante) */}
           <circle
             cx="28"
             cy="28"
@@ -76,7 +69,6 @@ export function ScrollProgress() {
           />
         </svg>
 
-        {/* Seta interna */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
