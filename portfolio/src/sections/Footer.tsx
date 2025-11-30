@@ -1,6 +1,47 @@
 import { SplitTextReveal } from "../components/ui/SplitTextReveal";
+import { useState } from "react";
 
 export function Footer() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (status === "loading") return;
+
+    setStatus("loading");
+
+    try {
+      const response = await fetch("/api/send-mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) throw new Error("Falha ao enviar");
+
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
+  };
   return (
     <footer className="bg-[#551B8C] text-black py-12 md:py-20 px-4 relative">
       <div className="container mx-auto max-w-6xl">
@@ -79,7 +120,10 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col justify-center mt-4 md:mt-0">
-            <form className="flex flex-col gap-8 md:gap-12">
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col gap-8 md:gap-12"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
                 <div className="flex flex-col gap-2 w-full">
                   <label
@@ -89,9 +133,13 @@ export function Footer() {
                     Nome completo*
                   </label>
                   <input
+                    required
                     type="text"
                     id="name"
-                    className="w-full bg-transparent border-b border-black py-2 focus:border-black/50 focus:outline-none transition-colors text-black text-base md:text-lg"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-b border-black py-2 focus:border-black/50 focus:outline-none transition-colors text-black text-base md:text-lg placeholder-black/30"
+                    placeholder="Seu nome"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-full">
@@ -102,9 +150,13 @@ export function Footer() {
                     Email*
                   </label>
                   <input
+                    required
                     type="email"
                     id="email"
-                    className="w-full bg-transparent border-b border-black py-2 focus:border-black/50 focus:outline-none transition-colors text-black text-base md:text-lg"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-b border-black py-2 focus:border-black/50 focus:outline-none transition-colors text-black text-base md:text-lg placeholder-black/30"
+                    placeholder="seu@email.com"
                   />
                 </div>
               </div>
@@ -117,19 +169,43 @@ export function Footer() {
                   Deixe sua mensagem*
                 </label>
                 <textarea
+                  required
                   id="message"
                   rows={2}
-                  className="w-full bg-transparent border-b border-black py-2 focus:border-black/50 focus:outline-none transition-colors text-black text-base md:text-lg resize-none"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b border-black py-2 focus:border-black/50 focus:outline-none transition-colors text-black text-base md:text-lg resize-none placeholder-black/30"
+                  placeholder="Como posso te ajudar?"
                 ></textarea>
               </div>
 
-              <div className="mt-4 flex justify-center md:justify-start">
+              <div className="mt-4 flex flex-col md:flex-row items-center gap-4">
                 <button
-                  type="button"
-                  className="bg-black hover:bg-gray-900 text-white font-display font-bold text-xs tracking-widest uppercase px-12 py-4 md:py-5 transition-all duration-300 w-full md:w-auto shadow-lg hover:-translate-y-1"
+                  type="submit"
+                  disabled={status === "loading" || status === "success"}
+                  className={`
+                    bg-black hover:bg-gray-900 text-white font-display font-bold text-xs tracking-widest uppercase px-12 py-4 md:py-5 
+                    transition-all duration-300 w-full md:w-auto shadow-lg hover:-translate-y-1
+                    disabled:opacity-50 disabled:cursor-not-allowed
+                  `}
                 >
-                  Enviar Mensagem
+                  {status === "loading"
+                    ? "ENVIANDO..."
+                    : status === "success"
+                    ? "ENVIADO!"
+                    : "ENVIAR MENSAGEM"}
                 </button>
+
+                {status === "success" && (
+                  <span className="text-green-900 font-bold text-sm animate-pulse">
+                    Recebi sua mensagem! Retorno em breve.
+                  </span>
+                )}
+                {status === "error" && (
+                  <span className="text-red-800 font-bold text-sm">
+                    Ops, algo deu errado. Tente novamente.
+                  </span>
+                )}
               </div>
             </form>
           </div>
