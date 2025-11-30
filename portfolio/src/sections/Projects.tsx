@@ -2,6 +2,7 @@ import vendrixImg from "../assets/projects/vendrix-project.png";
 import alphaImg from "../assets/projects/alpha-project.png";
 import icebergImg from "../assets/projects/iceberg-project.png";
 import otimizadorImg from "../assets/projects/otimizador-project.png";
+import { SplitTextReveal } from "../components/ui/SplitTextReveal";
 
 const projects = [
   {
@@ -50,51 +51,37 @@ export function Projects() {
           <span className="font-sans text-purple-500 text-xs md:text-sm font-bold tracking-widest uppercase mb-3 block">
             Selected Works
           </span>
-          <h2 className="font-display font-bold text-3xl md:text-5xl text-white tracking-tight">
-            Discover My <br /> Selected Projects
-          </h2>
+          <div className="font-display font-bold text-3xl md:text-5xl text-white tracking-tight flex justify-center">
+            <SplitTextReveal text="Featured Projects" />
+          </div>
         </div>
 
-        <div className="flex flex-col gap-12 md:gap-32">
+        <div className="flex flex-col gap-8 md:gap-12">
           {projects.map((project) => (
             <div
               key={project.id}
-              // MOBILE: h-auto (altura automática para caber imagem + texto empilhados)
-              // DESKTOP: h-[600px] (altura fixa para o card com hover)
               className="group relative w-full h-auto md:h-[600px] rounded-2xl overflow-hidden border border-white/5 bg-[#111] flex flex-col md:block"
             >
-              {/* --- ÁREA DA IMAGEM --- */}
-              {/* Mobile: aspect-video (16:9) garante que o print caiba perfeitamente sem cortes laterais e sem faixas pretas gigantes */}
               <div className="w-full aspect-video md:h-full md:aspect-auto overflow-hidden relative bg-[#1a1a1a]">
                 <img
                   src={project.image}
                   alt={project.title}
-                  // Mobile: object-cover (preenche o retângulo 16:9)
-                  // Desktop: Mantém o efeito de zoom
                   className="w-full h-full object-cover transition-transform duration-1000 md:group-hover:scale-105 opacity-100 md:opacity-80 md:group-hover:opacity-100"
                 />
 
-                {/* Overlay só existe no Desktop agora */}
                 <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500" />
               </div>
 
-              {/* --- ÁREA DE CONTEÚDO --- */}
-              {/* Mobile: position relative (bloco normal embaixo da imagem), p-6 padding menor
-                  Desktop: absolute inset-0 (overlay), flex justify-end
-              */}
               <div className="relative md:absolute md:inset-0 flex flex-col md:justify-end p-6 md:p-12 bg-[#111] md:bg-transparent border-t md:border-t-0 border-white/5 pointer-events-auto md:pointer-events-none">
-                {/* Título e Categoria */}
                 <div className="transform md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
                   <span className="font-sans text-purple-400 text-[10px] md:text-xs font-bold tracking-widest uppercase mb-2 block">
                     {project.category}
                   </span>
-                  {/* Diminuí o texto no mobile para text-xl */}
                   <h3 className="font-display font-bold text-xl md:text-4xl text-white leading-tight max-w-3xl mb-3 md:mb-0">
                     {project.title}
                   </h3>
                 </div>
 
-                {/* Descrição */}
                 <div className="block md:grid md:grid-rows-[0fr] md:group-hover:grid-rows-[1fr] md:transition-[grid-template-rows] md:duration-500 md:ease-out">
                   <div className="overflow-hidden">
                     <div className="pt-0 md:pt-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:transition-opacity md:duration-700 md:delay-100">
@@ -102,7 +89,6 @@ export function Projects() {
                         {project.description}
                       </p>
 
-                      {/* Botão Mobile (Link simples e limpo) */}
                       <div className="md:hidden mt-4">
                         <a
                           href={project.link}
@@ -130,7 +116,6 @@ export function Projects() {
                 </div>
               </div>
 
-              {/* BOTÃO FLUTUANTE (SÓ DESKTOP) */}
               <div className="hidden md:block absolute bottom-10 right-10 overflow-hidden pointer-events-auto">
                 <a
                   href={project.link}
