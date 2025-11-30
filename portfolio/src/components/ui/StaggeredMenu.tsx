@@ -184,7 +184,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50">
-      <div className="absolute top-6 right-4 md:top-8 md:right-8 pointer-events-auto z-[60]">
+      <div className="absolute top-5 right-4 md:top-6 md:right-8 pointer-events-auto z-[60]">
         <button
           ref={toggleBtnRef}
           onClick={toggleMenu}
