@@ -3,7 +3,9 @@ import { Services } from "./sections/Services";
 import { Projects } from "./sections/Projects";
 import { Testimonials } from "./sections/Testimonials";
 import { Footer } from "./sections/Footer";
-import { StaggeredMenu } from "./components/ui/StaggeredMenu"; // <--- Importe
+import { StaggeredMenu } from "./components/ui/StaggeredMenu";
+import { TechMarquee } from "./components/ui/TechMarquee";
+import { Header } from "./components/ui/Header";
 
 export default function App() {
   // Itens do Menu
@@ -27,8 +29,9 @@ export default function App() {
   return (
     <main className="bg-[#050505] min-h-screen relative">
       <StaggeredMenu items={menuItems} socialItems={socialItems} />
-
+      <Header />
       <Hero />
+      <TechMarquee />
       <Services />
       <Projects />
       <Testimonials />
