@@ -2,45 +2,54 @@ import vendrixImg from "../assets/projects/vendrix-project.png";
 import alphaImg from "../assets/projects/alpha-project.png";
 import icebergImg from "../assets/projects/iceberg-project.png";
 import otimizadorImg from "../assets/projects/otimizador-project.png";
+import lavanderiaImg from "../assets/projects/lavanderia-project.png";
 import { SplitTextReveal } from "../components/ui/SplitTextReveal";
 import { RevealOnScroll } from "../components/ui/RevealOnScroll";
 
 const projects = [
   {
     id: 1,
+    category: "Full Stack / ERP / Business Intelligence", 
+    title: "CleanFlow ERP - Laundry System", 
+    description: "Plataforma centralizada que substituiu planilhas manuais por gestão automatizada de ciclo de vida de pedidos e financeiro. Reduziu o tempo operacional em 40% e eliminou inconsistências de caixa.",
+    image: lavanderiaImg,
+    link: "https://github.com/PedroArthur06/cleanflow-erp#",
+  },
+  {
+    id: 2,
     category: "Full Stack / E-commerce / UX",
     title: "Vendrix - The Future of Sneakers",
     description:
       "Ecossistema de e-commerce imersivo focado em alta performance. Desenvolvido com arquitetura moderna para garantir carregamento instantâneo.",
     image: vendrixImg,
-    link: "#",
+    link: "https://vendrix-rosy.vercel.app/",
   },
   {
-    id: 2,
+    id: 3,
     category: "Branding / Business Logic",
     title: "Alpha Odonto - Loja Virtual",
     description:
       "Plataforma especializada com motor de personalização de produtos em tempo real e integração com gateway de pagamento.",
     image: alphaImg,
-    link: "#",
+    link: "https://alphaodonto.shop/",
   },
   {
-    id: 3,
+    id: 4,
     category: "Frontend / SEO",
     title: "Iceberg - Soluções em Climatização",
     description:
       "Landing Page de alta conversão focada em captação de leads. Otimizada para SEO técnico e Core Web Vitals.",
     image: icebergImg,
-    link: "#",
+    link: "https://iceberg-three.vercel.app/",
   },
   {
-    id: 4,
+    id: 5,
     category: "Algorithms",
     title: "Intelligent Route Optimizer",
     description:
       "Solução algorítmica para o problema do Caixeiro Viajante (TSP) reduzindo custos operacionais.",
     image: otimizadorImg,
-    link: "#",
+    link: "https://github.com/PedroArthur06/route-optima-engine/tree/desafio-03",
   },
 ];
 
@@ -58,19 +67,14 @@ export function Projects() {
         </div>
 
         <div className="flex flex-col gap-8 md:gap-12">
-          {/* 1. Adicione o 'index' aqui no map */}
           {projects.map((project, index) => (
-            /* 2. Envolva tudo com o RevealOnScroll */
-            /* Mova a prop 'key' para cá (REGRA OBRIGATÓRIA DO REACT) */
             <RevealOnScroll
               key={project.id}
-              delay={index % 2 === 0 ? 0 : 0.2} // Projetos pares: 0s | Ímpares: 0.2s
+              delay={index % 2 === 0 ? 0 : 0.2} 
             >
               <div
-                /* Remova a 'key' daqui */
                 className="group relative w-full h-auto md:h-[600px] rounded-2xl overflow-hidden border border-white/5 bg-[#111] flex flex-col md:block"
               >
-                {/* ... (todo o resto do conteúdo do card continua igual) ... */}
 
                 <div className="w-full aspect-video md:h-full md:aspect-auto overflow-hidden relative bg-[#1a1a1a]">
                   <img
