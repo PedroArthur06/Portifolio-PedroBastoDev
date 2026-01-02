@@ -16,6 +16,12 @@ const testimonials = [
     name: "Antônio Junior",
     role: "Fundador - Iceberg Ar-condicionado",
   },
+  {
+    id: 3,
+    quote: "Antes eu anotava tudo no caderno e acabava me perdendo nos pedidos. Agora consigo organizar as roupas, prazos e pagamentos com muito mais facilidade. O sistema deixou minha lavanderia mais organizada e meu dia a dia bem mais tranquilo.",
+    name: "Thaís Monteiro",
+    role: "Proprietária - Lavanderia Perfil",
+  },
 ];
 
 export function Testimonials() {
