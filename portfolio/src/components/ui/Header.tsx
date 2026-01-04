@@ -22,8 +22,8 @@ export function Header() {
     >
       <div className="mr-14 md:mr-20">
         <a
-          href="/cv-pedro-arthur.pdf"
-          download="CV_Pedro_Arthur_FullStack.pdf"
+          href="/CV - Pedro Basto.pdf"
+          download="CV - Pedro Basto.pdf"
           className="
             flex items-center gap-2 
             text-white font-display font-bold text-[10px] md:text-xs tracking-widest uppercase
