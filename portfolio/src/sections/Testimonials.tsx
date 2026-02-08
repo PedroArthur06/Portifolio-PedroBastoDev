@@ -4,21 +4,27 @@ import { SplitTextReveal } from "../components/ui/SplitTextReveal";
 
 const testimonials = [
   {
-    id: 1,
+    id:1,
+    quote:"O sistema eliminou as divergências manuais de caixa e unificou a gestão complexa de Convênios, iFood e Pix. O que antes consumia horas de conferência e retrabalho, hoje temos em um painel financeiro preciso e automatizado.",
+    name: "Aline Monteiro",
+    Role: "Proprietária - Villa Bistrô"
+  },
+  {
+    id: 2,
     quote:
       "O resultado foi excelente. Ele entendeu nossas necessidades de personalização e transformou nosso processo de vendas em uma experiência de compra fluida e intuitiva.",
     name: "Lauren Cristhina",
     role: "Proprietária - Alpha Odonto",
   },
   {
-    id: 2,
+    id: 3,
     quote:
       "A landing page foi fundamental para nossa estratégia digital. Ela profissionalizou nossa presença online e se tornou uma ferramenta essencial para alcançar e captar novos clientes.",
     name: "Antônio Junior",
     role: "Fundador - Iceberg Ar-condicionado",
   },
   {
-    id: 3,
+    id: 4,
     quote:
       "Antes eu anotava tudo no caderno e acabava me perdendo nos pedidos. Agora consigo organizar as roupas, prazos e pagamentos com muito mais facilidade. O sistema deixou minha lavanderia mais organizada e meu dia a dia bem mais tranquilo",
     name: "Thaís Monteiro",

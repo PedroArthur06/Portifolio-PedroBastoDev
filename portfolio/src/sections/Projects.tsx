@@ -5,10 +5,19 @@ import otimizadorImg from "../assets/projects/otimizador-project.png";
 import lavanderiaImg from "../assets/projects/lavanderia-project.png";
 import { SplitTextReveal } from "../components/ui/SplitTextReveal";
 import { RevealOnScroll } from "../components/ui/RevealOnScroll";
+import villaBistroImg from "../assets/projects/VillaBistro-project.png"
 
 const projects = [
   {
-    id: 1,
+  id: 1,
+  category: "Full Stack / FinTech / Automation",
+  title: "VillaBistro - Financial & POS Reconciliation",
+  description: "Sistema de fechamento de caixa e gestão de recebíveis multi-canal. Unificou o controle de 7 métodos de pagamento (incluindo iFood e Convênios Corporativos) e automatizou a conferência de gaveta, reduzindo o tempo de fechamento diário e mitigando erros humanos de contabilidade.",
+  image: villaBistroImg, 
+  link: "https://github.com/PedroArthur06/Nexus-POS.git",
+},
+  {
+    id: 2,
     category: "Full Stack / ERP / Business Intelligence", 
     title: "CleanFlow ERP - Laundry System", 
     description: "Plataforma centralizada que substituiu planilhas manuais por gestão automatizada de ciclo de vida de pedidos e financeiro. Reduziu o tempo operacional em 40% e eliminou inconsistências de caixa.",
@@ -16,7 +25,7 @@ const projects = [
     link: "https://github.com/PedroArthur06/cleanflow-erp#",
   },
   {
-    id: 2,
+    id: 3,
     category: "Full Stack / E-commerce / UX",
     title: "Vendrix - The Future of Sneakers",
     description:
@@ -25,7 +34,7 @@ const projects = [
     link: "https://vendrix-rosy.vercel.app/",
   },
   {
-    id: 3,
+    id: 4,
     category: "Branding / Business Logic",
     title: "Alpha Odonto - Loja Virtual",
     description:
@@ -34,7 +43,7 @@ const projects = [
     link: "https://alphaodonto.shop/",
   },
   {
-    id: 4,
+    id: 5,
     category: "Frontend / SEO",
     title: "Iceberg - Soluções em Climatização",
     description:
@@ -43,7 +52,7 @@ const projects = [
     link: "https://iceberg-three.vercel.app/",
   },
   {
-    id: 5,
+    id: 6,
     category: "Algorithms",
     title: "Intelligent Route Optimizer",
     description:
