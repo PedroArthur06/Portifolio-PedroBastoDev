@@ -22,7 +22,7 @@ export function Header() {
     >
       <div className="mr-14 md:mr-20">
         <a
-          href="/CV - Pedro Basto.pdf"
+          href="/CV Pedro-Basto Dev.pdf"
           download="CV - Pedro Basto.pdf"
           className="
             flex items-center gap-2 
