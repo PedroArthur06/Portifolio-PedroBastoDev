@@ -7,7 +7,7 @@ const testimonials = [
     id:1,
     quote:"O sistema eliminou as divergências manuais de caixa e unificou a gestão complexa de Convênios, iFood e Pix. O que antes consumia horas de conferência e retrabalho, hoje temos em um painel financeiro preciso e automatizado.",
     name: "Aline Monteiro",
-    Role: "Proprietária - Villa Bistrô"
+    Role: "Proprietária - Villa Bistrô",
   },
   {
     id: 2,
