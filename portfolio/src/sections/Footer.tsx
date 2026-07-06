@@ -231,9 +231,9 @@ export function Footer() {
                   alert("O sistema de chamadas ainda está carregando...");
                 }
               }}
-              className="font-sans text-lg font-bold text-black hover:text-[#551B8C] transition-colors cursor-pointer text-center md:text-right"
+              className="font-sans text-lg font-bold text-black hover:opacity-70 transition-opacity cursor-pointer text-center md:text-right"
             >
-              Ligar: (65) 9981-2657
+              Ligar: (65) 99632-6845
             </button>
 
             <a
