@@ -222,9 +222,20 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col items-center md:items-end gap-1 text-center md:text-right">
-            <span className="font-sans text-lg font-bold text-black">
-              (65) 9981-2657
-            </span>
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof window !== "undefined" && window.WP) {
+                  window.WP.call('6599812657');
+                } else {
+                  alert("O sistema de chamadas ainda está carregando...");
+                }
+              }}
+              className="font-sans text-lg font-bold text-black hover:text-[#551B8C] transition-colors cursor-pointer text-center md:text-right"
+            >
+              Ligar: (65) 9981-2657
+            </button>
+
             <a
               href="mailto:pedrobasto.dev@gmail.com"
               className="font-sans text-black/70 text-sm font-medium hover:text-black transition-colors"

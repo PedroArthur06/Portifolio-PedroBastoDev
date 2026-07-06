@@ -37,5 +37,12 @@ export default function App() {
       <Testimonials />
       <Footer />
     </main>
-  );
+  ); 
+}
+declare global {
+  interface Window {
+    WP: {
+      call: (numero: string) => void;
+    };
+  }
 }
